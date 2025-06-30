@@ -1,0 +1,75 @@
+------------------------- CAMBIO DE NOMBRE DE SWITCH DE CAPA 2 --------------------------------
+Switch>enable
+Switch#configure terminal
+1)	Switch(config)#hostname SCC_AG 					(Switch CC ADMINISTRACION GENERAL)
+2)	Switch(config)#hostname SCC_GG_ST 				(Switch CC GERENCIA GENERAL Y SOPORTE TECNICO)
+3)	Switch(config)#hostname SDF_AS 					(Switch DFunes ADMINISTRACION DE SUCURSAL)
+4)	Switch(config)#hostname SDF_GS_AC 				(Switch DFunes GERENCIA DE SUCURSAL Y ATENCION AL CLIENTE)
+5)	Switch(config)#hostname SRC_AS 					(Switch RioIV ADMINISTRACION DE SUCURSAL)
+6)	Switch(config)#hostname SRC_GS_AC 				(Switch RioIV GERENCIA DE SUCURSAL Y ATENCION AL CLIENTE)
+		      
+------------------------- VLAN ----------------------------------------------------------------
+
+1)	SCC_AG#configure terminal
+	SCC_AG(config)#vlan 10
+	SCC_AG(config-vlan)#name CCentral_AG
+	SCC_AG(config-vlan)#exit
+	SCC_AG(config)#exit
+	SCC_AG#show vlan							(Controla que se creo la vlan)
+	SCC_AG#configure terminal
+	SCC_AG(config)#interface range fastEthernet 0/2-21
+	SCC_AG(config-if-range)#switchport mode ACCESS
+	SCC_AG(config-if-range)#switchport ACCESS vlan 10
+
+2)	SCC_GG_ST(config)#vlan 20
+	SCC_GG_ST(config-vlan)#name Gerencia_General	
+	SCC_GG_ST(config)#interface range fastEthernet 0/2-5
+	SCC_GG_ST(config-if-range)#switchport mode ACCESS
+	SCC_GG_ST(config-if-range)#switchport ACCESS vlan 20
+	SCC_GG_ST(config)#vlan 30
+	SCC_GG_ST(config-vlan)#name Soporte_Tecnico	
+	SCC_GG_ST(config)#interface range fastEthernet 0/6-7
+	SCC_GG_ST(config-if-range)#switchport mode ACCESS
+	SCC_GG_ST(config-if-range)#switchport ACCESS vlan 30
+
+3)	SDF_AS(config)#vlan 40
+	SDF_AS(config-vlan)#name Admin_Sucursal
+	SDF_AS(config-vlan)#exit
+	SDF_AS(config)#interface range fastEthernet 0/2-7
+	SDF_AS(config-if-range)#switchport mode ACCESS
+	SDF_AS(config-if-range)#switchport ACCESS vlan 40
+
+4)	SDF_GS_AC(config)#vlan 50
+	SDF_GS_AC(config-vlan)#name Gerencia_Sucursal
+	SDF_GS_AC(config-vlan)#exit
+	SDF_GS_AC(config)#interface range fastEthernet 0/2-5
+	SDF_GS_AC(config-if-range)#interface range fastEthernet 0/2-3
+	SDF_GS_AC(config-if-range)#switchport mode ACCESS
+	SDF_GS_AC(config-if-range)#switchport ACCESS vlan 50
+	SDF_GS_AC(config)#vlan 60
+	SDF_GS_AC(config-vlan)#name Atencion_Clientes
+	SDF_GS_AC(config-vlan)#exit
+	SDF_GS_AC(config)#interface range fastEthernet 0/4-18
+	SDF_GS_AC(config-if-range)#switchport mode ACCESS
+	SDF_GS_AC(config-if-range)#switchport ACCESS vlan 60
+
+5)	SRC_AS(config)#vlan 40
+	SRC_AS(config-vlan)#name Admin_Sucursal
+	SRC_AS(config-vlan)#exit
+	SRC_AS(config)#interface range fastEthernet 0/2-7
+	SRC_AS(config-if-range)#switchport mode ACCESS
+	SRC_AS(config-if-range)#switchport ACCESS vlan 40
+
+6)	SRC_GS_AC(config)#vlan 50
+	SRC_GS_AC(config-vlan)#name Gerencia_Sucursal
+	SRC_GS_AC(config-vlan)#exit
+	SRC_GS_AC(config)#interface range fastEthernet 0/2-3
+	SRC_GS_AC(config-if-range)#switchport mode ACCESS
+	SRC_GS_AC(config-if-range)#switchport ACCESS vlan 50
+	SRC_GS_AC(config-if-range)#exit
+	SRC_GS_AC(config)#vlan 60
+	SRC_GS_AC(config-vlan)#name Atencion_Clientes
+	SRC_GS_AC(config-vlan)#exit
+	SRC_GS_AC(config)#interface range fastEthernet 0/4-18
+	SRC_GS_AC(config-if-range)#switchport mode ACCESS
+	SRC_GS_AC(config-if-range)#switchport ACCESS vlan 60
