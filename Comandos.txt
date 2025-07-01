@@ -73,3 +73,64 @@ Switch#configure terminal
 	SRC_GS_AC(config)#interface range fastEthernet 0/4-18
 	SRC_GS_AC(config-if-range)#switchport mode ACCESS
 	SRC_GS_AC(config-if-range)#switchport ACCESS vlan 60
+
+------------------------------------------- Mode Trunk -------------------------------------
+
+1) SCC_AG(config)#interface fa
+SCC_AG(config)#interface fastEthernet 0/1
+SCC_AG(config-if)#switchport mode Trunk
+
+2)SCC_GG_ST(config)#interface fastEthernet 0/1
+SCC_GG_ST(config-if)#switchport mode Trunk
+
+3)SDF_AS(config)#interface fastEthernet 0/1
+SDF_AS(config-if)#switchport mode trunk
+
+4)SDF_GS_AC(config)#interface fastEthernet 0/1
+SDF_GS_AC(config-if)#switchport mode Trunk
+
+5)SRC_AS(config)#interface fastEthernet 0/1
+SRC_AS(config-if)#switchport mode Trunk
+
+6)SRC_GS_AC(config)#interface fastEthernet 0/1
+SRC_GS_AC(config-if)#switchport mode Trunk
+
+------------------------------------------- VLAN administracion switches ------------------------------------------
+
+Se repite en todos los switch de capa 2:
+
+SCC_AG(config)#interface vlan 70
+SCC_AG(config-if)#ip address 172.20.8.194 255.255.255.240
+SCC_AG(config-if)#no shutdown
+SCC_AG(config-if)#exit
+SCC_AG(config)#ip default-gateway 172.20.8.193
+
+SCC_GG_ST(config)#interface vlan 70
+SCC_GG_ST(config-if)#ip address 172.20.8.196 255.255.255.240
+SCC_GG_ST(config-if)#no shutdown
+SCC_GG_ST(config-if)#exit
+SCC_GG_ST(config)#ip default-gateway 172.20.8.193
+
+SDF_AS(config)#interface vlan 70
+SDF_AS(config-if)#ip address 172.20.8.210 255.255.255.240
+SDF_AS(config-if)#no shutdown
+SDF_AS(config-if)#exit
+SDF_AS(config)#ip default-gateway 172.20.8.209
+
+SDF_GS_AC(config)#interface vlan 70
+SDF_GS_AC(config-if)#ip address 172.20.8.212 255.255.255.240
+SDF_GS_AC(config-if)#no shutdown
+SDF_GS_AC(config-if)#exit
+SDF_GS_AC(config)#ip default-gateway 172.20.8.209
+
+SRC_AS(config)#interface vlan 70
+SRC_AS(config-if)#ip address 172.20.8.226 255.255.255.240
+SRC_AS(config-if)#no shutdown
+SRC_AS(config-if)#exit
+SRC_AS(config)#ip default-gateway 172.20.8.225
+
+SRC_GS_AC(config)#interface vlan 70
+SRC_GS_AC(config-if)#ip address 172.20.8.228 255.255.255.240
+SRC_GS_AC(config-if)#no shutdown
+SRC_GS_AC(config-if)#exit
+SRC_GS_AC(config)#ip default-gateway 172.20.8.225
