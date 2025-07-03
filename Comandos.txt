@@ -134,3 +134,80 @@ SRC_GS_AC(config-if)#ip address 172.20.8.228 255.255.255.240
 SRC_GS_AC(config-if)#no shutdown
 SRC_GS_AC(config-if)#exit
 SRC_GS_AC(config)#ip default-gateway 172.20.8.225
+
+------------------------------------------------Switches de capa 3-----------------------------------------------------
+
+
+CCentral_SWC3(config)#hostname CCentral_SWC3
+CCentral_SWC3(config)#enable secret 2025
+CCentral_SWC3(config)#service password-encryption
+CCentral_SWC3(config)#line con 0
+CCentral_SWC3(config-if)#password cisco123
+CCentral_SWC3(config-if)#login
+CCentral_SWC3(config-if)#exec-timeout 0 0
+CCentral_SWC3(config-if)line vty 0 4
+CCentral_SWC3(config-if)password cisco123
+CCentral_SWC3(config-if)login
+CCentral_SWC3(config-if)transport input telnet
+CCentral_SWC3(config-if)exec-timeout 10 0
+
+CCentral_SWC3(config)#interface Vlan10
+CCentral_SWC3(config)#ip address 172.20.8.1 255.255.255.224
+CCentral_SWC3(config)#no shutdown
+
+CCentral_SWC3(config)#interface Vlan20
+CCentral_SWC3(config)#ip address 172.20.8.33 255.255.255.248
+CCentral_SWC3(config)#no shutdown
+
+CCentral_SWC3(config)#interface Vlan30
+CCentral_SWC3(config)#ip address 172.20.8.41 255.255.255.248
+CCentral_SWC3(config)#no shutdown
+
+CCentral_SWC3(config)#interface Vlan70
+CCentral_SWC3(config)#ip address 172.20.8.185 255.255.255.248
+CCentral_SWC3(config)#no shutdown
+
+CCentral_SWC3(config)#interface fastEthernet 0/1
+CCentral_SWC3(config-if)#switchport mode trunk
+CCentral_SWC3(config-if)#spanning-tree portfast trunk
+
+CCentral_SWC3(config)#interface fastEthernet 0/2
+CCentral_SWC3(config-if)#switchport mode trunk
+CCentral_SWC3(config-if)#spanning-tree portfast trunk
+
+CCentral_SWC3(config)#interface GigabitEthernet0/1
+CCentral_SWC3(config-if)#no switchport
+CCentral_SWC3(config-if)#ip address 172.20.8.193 255.255.255.252
+CCentral_SWC3(config-if)#no shutdown
+
+CCentral_SWC3(config)#interface GigabitEthernet0/2
+CCentral_SWC3(config-if)#no switchport
+CCentral_SWC3(config-if)#ip address 172.20.8.197 255.255.255.252
+no shutdown
+
+CCentral_SWC3(config)#interface fastEthernet 0/3
+CCentral_SWC3(config-if)#no switchport
+CCentral_SWC3(config-if)#ip address 172.20.8.201 255.255.255.252
+CCentral_SWC3(config-if)#no shutdown
+CCentral_SWC3(config-if)#router ospf 1
+CCentral_SWC3(config-router)#log-adjacency-changes
+CCentral_SWC3(config-router)#network 172.20.8.0 0.0.0.31 area 0
+CCentral_SWC3(config-router)#network 172.20.8.32 0.0.0.7 area 0
+CCentral_SWC3(config-router)#network 172.20.8.40 0.0.0.7 area 0
+CCentral_SWC3(config-router)#network 172.20.8.160 0.0.0.31 area 0
+CCentral_SWC3(config-router)#network 172.20.8.192 0.0.0.3 area 0
+CCentral_SWC3(config-router)#network 172.20.8.196 0.0.0.3 area 0
+CCentral_SWC3(config-router)#network 172.20.8.200 0.0.0.3 area 0
+CCentral_SWC3(config-router)#ip route 0.0.0.0 0.0.0.0 172.20.8.202
+CCentral_SWC3(config)#line vty 0 4
+CCentral_SWC3(config-line)#password cisco123
+CCentral_SWC3(config-line)#login
+CCentral_SWC3(config-line)#transport input telnet
+CCentral_SWC3(config-line)#exit
+CCentral_SWC3(config)#enable secret 2025
+CCentral_SWC3(config)#line con 0
+CCentral_SWC3(config-line)#password cisco123
+CCentral_SWC3(config-line)# login
+CCentral_SWC3(config-line)#copy running-config startup-config
+
+
