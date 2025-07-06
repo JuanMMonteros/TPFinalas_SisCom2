@@ -1,0 +1,191 @@
+Building configuration...
+
+Current configuration : 2589 bytes
+!
+version 12.2(37)SE1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname CCentral_SWC3
+!
+!
+enable secret 5 $1$mERr$wJoEThA3TSeBMe.ZM0C1j/
+enable password siscom2
+!
+!
+!
+!
+!
+ip routing
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/2
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface FastEthernet0/3
+ no switchport
+ ip address 172.20.8.241 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/4
+ shutdown
+!
+interface FastEthernet0/5
+ shutdown
+!
+interface FastEthernet0/6
+ shutdown
+!
+interface FastEthernet0/7
+ shutdown
+!
+interface FastEthernet0/8
+ shutdown
+!
+interface FastEthernet0/9
+ shutdown
+!
+interface FastEthernet0/10
+ shutdown
+!
+interface FastEthernet0/11
+ shutdown
+!
+interface FastEthernet0/12
+ shutdown
+!
+interface FastEthernet0/13
+ shutdown
+!
+interface FastEthernet0/14
+ shutdown
+!
+interface FastEthernet0/15
+ shutdown
+!
+interface FastEthernet0/16
+ shutdown
+!
+interface FastEthernet0/17
+ shutdown
+!
+interface FastEthernet0/18
+ shutdown
+!
+interface FastEthernet0/19
+ shutdown
+!
+interface FastEthernet0/20
+ shutdown
+!
+interface FastEthernet0/21
+ shutdown
+!
+interface FastEthernet0/22
+ shutdown
+!
+interface FastEthernet0/23
+ shutdown
+!
+interface FastEthernet0/24
+ shutdown
+!
+interface GigabitEthernet0/1
+ no switchport
+ ip address 172.20.8.57 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ no switchport
+ ip address 172.20.8.61 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ mac-address 00e0.b038.5301
+ ip address 172.20.8.1 255.255.255.224
+!
+interface Vlan20
+ mac-address 00e0.b038.5302
+ ip address 172.20.8.33 255.255.255.240
+!
+interface Vlan30
+ mac-address 00e0.b038.5303
+ ip address 172.20.8.49 255.255.255.248
+!
+interface Vlan70
+ mac-address 00e0.b038.5304
+ ip address 172.20.8.193 255.255.255.240
+!
+router ospf 1
+ log-adjacency-changes
+ network 172.20.8.0 0.0.0.31 area 0
+ network 172.20.8.32 0.0.0.15 area 0
+ network 172.20.8.48 0.0.0.7 area 0
+ network 172.20.8.56 0.0.0.3 area 0
+ network 172.20.8.60 0.0.0.3 area 0
+ network 172.20.8.192 0.0.0.15 area 0
+ network 172.20.8.240 0.0.0.3 area 0
+ network 172.20.8.200 0.0.0.3 area 0
+!
+ip default-gateway 172.20.8.193
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+ password siscom2
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password siscom2
+ login
+line vty 5 15
+ password siscom2
+ login
+!
+!
+!
+!
+end

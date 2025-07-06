@@ -1,0 +1,96 @@
+Building configuration...
+
+Current configuration : 1082 bytes
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname GW
+!
+!
+!
+enable secret 5 $1$mERr$wJoEThA3TSeBMe.ZM0C1j/
+enable password siscom2
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO1941/K9 sn FTX1524U967-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 172.20.8.242 255.255.255.252
+ ip nat inside
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ ip address 172.20.8.202 255.255.255.252
+ ip nat outside
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ log-adjacency-changes
+ network 172.20.8.240 0.0.0.3 area 0
+ default-information originate
+!
+ip nat inside source list 1 interface GigabitEthernet0/1 overload
+ip classless
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet0/1 
+!
+ip flow-export version 9
+!
+!
+access-list 1 permit 172.20.8.0 0.0.0.255
+!
+!
+!
+!
+!
+line con 0
+ password siscom2
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password siscom2
+ login
+line vty 5 15
+ password siscom2
+ login
+!
+!
+!
+end
